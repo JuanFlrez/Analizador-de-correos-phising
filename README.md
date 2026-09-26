@@ -7,6 +7,9 @@ de dominio del remitente y deteccion de adjuntos con extensiones de riesgo.
 Proyecto academico de ciberseguridad, pensado tambien como pieza de
 portafolio.
 
+**Demo en vivo:** https://analizador-de-correos-phising.onrender.com
+*(el plan gratis de Render duerme el servicio tras 15 min de inactividad — la primera carga puede tardar unos 30-50 segundos)*
+
 ## Caracteristicas
 
 - Deteccion de frases asociadas a **urgencia**, **solicitud de credenciales**,
