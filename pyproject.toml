@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phishing-detector"
+version = "0.1.0"
+description = "Detector de patrones de phishing en correos electronicos usando reglas y expresiones regulares"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Sebastian" }]
+keywords = ["ciberseguridad", "phishing", "seguridad", "email", "regex"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+phishing-detector = "phishing_detector.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

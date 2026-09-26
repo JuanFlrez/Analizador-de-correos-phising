@@ -1,0 +1,3 @@
+# El detector solo usa la biblioteca estandar de Python (re, email, dataclasses, argparse).
+# Esta dependencia es unicamente para desarrollo/pruebas.
+pytest>=7.0
