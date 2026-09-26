@@ -2,3 +2,4 @@
 # (re, email, dataclasses, argparse). Estas dependencias son opcionales:
 pytest>=7.0    # pruebas (extra [dev])
 flask>=3.0     # aplicacion web (extra [web])
+gunicorn>=21.2 # servidor de produccion para el despliegue (extra [web])
