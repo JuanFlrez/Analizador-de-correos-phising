@@ -1,3 +1,4 @@
-# El detector solo usa la biblioteca estandar de Python (re, email, dataclasses, argparse).
-# Esta dependencia es unicamente para desarrollo/pruebas.
-pytest>=7.0
+# El nucleo del detector solo usa la biblioteca estandar de Python
+# (re, email, dataclasses, argparse). Estas dependencias son opcionales:
+pytest>=7.0    # pruebas (extra [dev])
+flask>=3.0     # aplicacion web (extra [web])

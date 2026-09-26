@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Escaner de Phishing{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="franja"></div>
+  <main class="contenedor">
+    <header class="cabecera">
+      <a href="{{ url_for('routes.inicio') }}" class="marca">
+        <span class="marca-icono" aria-hidden="true">&#9673;</span>
+        Escaner de Phishing
+      </a>
+      <p class="cabecera-sub">Analisis de correos por patrones — proyecto de ciberseguridad</p>
+    </header>
+    {% block contenido %}{% endblock %}
+    <footer class="pie">
+      Herramienta con fines academicos y de portafolio. No sustituye una verificacion oficial de seguridad.
+    </footer>
+  </main>
+</body>
+</html>

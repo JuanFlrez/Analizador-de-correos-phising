@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block titulo %}Resultado — Escaner de Phishing{% endblock %}
+{% block contenido %}
+<section class="panel resultado {{ clase_nivel }}">
+  <div class="resultado-cabecera">
+    <div>
+      <p class="resultado-etiqueta">Nivel de riesgo</p>
+      <p class="resultado-nivel">{{ resultado.nivel_riesgo }}</p>
+    </div>
+    <div class="resultado-puntaje">
+      <span class="puntaje-numero">{{ resultado.puntaje }}</span>
+      <span class="puntaje-label">puntos</span>
+    </div>
+  </div>
+
+  {% if resultado.coincidencias %}
+  <div class="hallazgos">
+    {% for categoria, items in resultado.coincidencias.items() %}
+    <div class="hallazgo-grupo">
+      <p class="hallazgo-titulo">{{ etiquetas.get(categoria, categoria) }}</p>
+      <ul class="hallazgo-lista">
+        {% for item in items %}
+        <li><code>{{ item }}</code></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="sin-hallazgos">No se detectaron patrones sospechosos en el texto analizado.</p>
+  {% endif %}
+</section>
+
+<details class="panel detalle-entrada">
+  <summary>Ver el correo analizado</summary>
+  <dl>
+    <dt>Asunto</dt>
+    <dd>{{ datos_entrada.asunto or "(vacio)" }}</dd>
+    <dt>Remitente</dt>
+    <dd>{{ datos_entrada.remitente or "(vacio)" }}</dd>
+    <dt>Dominio esperado</dt>
+    <dd>{{ datos_entrada.dominio_esperado or "(vacio)" }}</dd>
+    <dt>Adjuntos</dt>
+    <dd>{{ datos_entrada.adjuntos or "(ninguno)" }}</dd>
+    <dt>Cuerpo</dt>
+    <dd class="cuerpo-pre">{{ datos_entrada.cuerpo or "(vacio)" }}</dd>
+  </dl>
+</details>
+
+<a href="{{ url_for('routes.inicio') }}" class="enlace-boton">&larr; Analizar otro correo</a>
+{% endblock %}

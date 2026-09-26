@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block titulo %}Escaner de Phishing{% endblock %}
+{% block contenido %}
+<form class="panel formulario" method="post" action="{{ url_for('routes.analizar') }}">
+  <div class="campo">
+    <label for="asunto">Asunto</label>
+    <input type="text" id="asunto" name="asunto" placeholder="Ej: Verificacion urgente de su cuenta">
+  </div>
+
+  <div class="campo">
+    <label for="cuerpo">Cuerpo del correo</label>
+    <textarea id="cuerpo" name="cuerpo" rows="9" placeholder="Pega aqui el texto completo del correo..."></textarea>
+  </div>
+
+  <div class="fila-dos">
+    <div class="campo">
+      <label for="remitente">Remitente (opcional)</label>
+      <input type="text" id="remitente" name="remitente" placeholder="soporte@ejemplo.com">
+    </div>
+    <div class="campo">
+      <label for="dominio_esperado">Dominio oficial esperado (opcional)</label>
+      <input type="text" id="dominio_esperado" name="dominio_esperado" placeholder="ejemplo.com">
+    </div>
+  </div>
+
+  <div class="campo">
+    <label for="adjuntos">Nombres de adjuntos (opcional, separados por coma)</label>
+    <input type="text" id="adjuntos" name="adjuntos" placeholder="factura.pdf.exe, reporte.docx">
+  </div>
+
+  <button type="submit" class="boton">Analizar correo</button>
+</form>
+
+<section class="ejemplo">
+  <p class="ejemplo-texto">¿Sin un correo a mano? </p>
+  <button type="button" class="enlace-boton" id="btn-demo">Cargar un ejemplo sospechoso</button>
+</section>
+
+<script>
+  document.getElementById('btn-demo').addEventListener('click', function () {
+    document.getElementById('asunto').value = 'URGENTE: Verificacion requerida de su cuenta';
+    document.getElementById('cuerpo').value =
+      'Estimado cliente, hemos detectado actividad inusual en su cuenta. ' +
+      'Su cuenta sera suspendida en 24 horas si no confirma sus datos. ' +
+      'Ingrese sus credenciales aqui: http://192.168.45.12/verificacion-banco-seguro';
+    document.getElementById('remitente').value = 'soporte@paypa1-seguridad.com';
+    document.getElementById('dominio_esperado').value = 'paypal.com';
+    document.getElementById('adjuntos').value = 'factura_urgente.pdf.exe';
+  });
+</script>
+{% endblock %}

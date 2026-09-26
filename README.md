@@ -52,6 +52,22 @@ phishing-detector --asunto "Urgente" --cuerpo "Verifique su cuenta aqui: http://
 phishing-detector --demo --json
 ```
 
+### Como aplicacion web
+
+```bash
+pip install -e ".[web]"
+flask --app wsgi run --debug
+```
+
+Abre `http://127.0.0.1:5000`, pega el correo (o carga el ejemplo con el
+boton de la pagina) y obten el reporte de riesgo.
+
+Para produccion (ej. Render, Railway):
+
+```bash
+gunicorn wsgi:app
+```
+
 ### Como libreria en Python
 
 ```python
@@ -84,11 +100,17 @@ phishing-detector/
 │   ├── __init__.py       # API publica (analizar_correo)
 │   ├── patterns.py        # Palabras clave, extensiones y acortadores
 │   ├── detector.py        # Logica de analisis y scoring
-│   └── cli.py              # Interfaz de linea de comandos
+│   ├── cli.py              # Interfaz de linea de comandos
+│   └── web/                 # Aplicacion web (Flask)
+│       ├── __init__.py       # application factory
+│       ├── routes.py          # rutas: formulario y reporte
+│       ├── templates/
+│       └── static/style.css
 ├── tests/
 │   └── test_detector.py
 ├── .github/workflows/
 │   └── tests.yml           # CI: corre pytest en cada push/PR
+├── wsgi.py                  # punto de entrada para desplegar la web
 ├── pyproject.toml
 ├── requirements.txt
 ├── LICENSE
@@ -97,7 +119,6 @@ phishing-detector/
 
 ## Roadmap / posibles mejoras
 
-- [ ] Interfaz web (Flask/FastAPI) para pegar el correo y ver el reporte
 - [ ] Exportar reportes a PDF o CSV
 - [ ] Integracion con una API de reputacion de dominios/IPs
 - [ ] Soporte para analizar bandejas de entrada completas (IMAP)
